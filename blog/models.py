@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.urls import reverse
 # Create your models here.
 class Article(models.Model):
     # title, description, published, update, draft | publish
@@ -17,3 +18,6 @@ class Article(models.Model):
     )
     def __str__(self):
         return f"{self.title}-{self.isPublished}"
+
+    def get_absolute_url(self):
+        return reverse("detail", args=[str(self.id)])
