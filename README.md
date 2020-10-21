@@ -1,8 +1,6 @@
 # this is a blog created using django framework 
 ### if you wish to clone this project and test it follow the instructions
-\
-\
-\
+\\
 - install virtual enviroment
 <code>
  pip3 install virtualenv
