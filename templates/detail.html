@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+	<div class="container-fluid text-center">
+		<div class="text-center text-priamry"><h1>{{article.title|linebreaks}}</h1><small>{{article.publish_date}}</small></div>
+		<hr><br>
+		<span class="text-center">{{article.description|safe}}</span>
+	</div>
+
+{% endblock %}
