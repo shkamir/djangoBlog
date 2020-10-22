@@ -15,7 +15,7 @@
 		<ul class="list-group text-center">
 			<div class="container text-center">
 				  <li class="list-group-item list-group-item-primary"> {{articles.title}} <br /><small class="text-dark">publishd on: {{articles.publish_date}}</small></li>
-				  <li class="list-group-item list-group-item-light">{{articles.description}}</li>
+				  <li class="list-group-item list-group-item-light">{{articles.description|safe|truncatechars_html:285}}</li>
 				  <li class="list-group-item list-group-item-light"><a href="{{articles.get_absolute_url}}" class="text-info">
 				  	Continue reading ....
 				  </a></li>
