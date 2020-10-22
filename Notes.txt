@@ -1,5 +1,0 @@
-- working on branch work
--TODO :
-	1 - make contact page these info of client : name, email, message, file - DONE
-
-	2 - make about page with : about me text
