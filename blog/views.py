@@ -17,6 +17,7 @@ def detail(request, id=None):
 	article = get_object_or_404(Article, id=id, isPublished="publish")
 	context = {
 		"article": article,
+                "title":article.title,
 	}
 	return render(request, "detail.html", context)
 
@@ -33,9 +34,10 @@ def contact(request):
         # print (f"{name} has sent {message}")
         save_contact = Contact(name=name, email=email, message=message,file=file)
         save_contact.save()
-    messages.success(request, "successfilly sent")
-
-    return render(request, "contact.html", {})
+       	messages.success(request,"successfilly sent")
+        return render(request, "contact.html", {})
+    else:
+    	return render(request, "contact.html", {})
 def about (request):
     about_text = About.objects.all()
     return render(request, "about.html", {"about": about_text})
