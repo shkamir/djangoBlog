@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block title %} About {% endblock title %}
+{% block content %}
+<div class="container-md align-content-center">
+   {% for a in about %}
+
+        {{a.text|safe}}
+
+   {% endfor %}
+</div>
+{% endblock content %}

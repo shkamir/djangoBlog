@@ -33,3 +33,7 @@ class Contact(models.Model):
     class Meta:
         verbose_name = "contact"
         verbose_name_plural = "contact form's"
+class About(models.Model):
+    # about text
+    text = RichTextUploadingField()
+    

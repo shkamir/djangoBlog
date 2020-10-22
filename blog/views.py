@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Article, Contact
+from .models import Article, Contact, About
 from django.contrib import messages
+
+
+
 def index(request):
     article = Article.objects.filter(isPublished="publish")
     context = {
@@ -33,3 +36,6 @@ def contact(request):
     messages.success(request, "successfilly sent")
 
     return render(request, "contact.html", {})
+def about (request):
+    about_text = About.objects.all()
+    return render(request, "about.html", {"about": about_text})
