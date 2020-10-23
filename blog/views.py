@@ -46,6 +46,7 @@ def contact(request):
         form.save()    
         form = ContactForm()
        	messages.success(request,"successfilly sent")
+        
         return render(request, "contact.html", {"form": form})
     else:
     	return render(request, "contact.html", {"form": form})
