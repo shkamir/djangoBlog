@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Contact, About
 from django.contrib import messages
-
+from .forms import ContactForm
 
 
 def index(request):
@@ -24,20 +24,33 @@ def detail(request, id=None):
 
 
 
-def contact(request):
+# def contact(request):
 
+#     if request.method == "POST":
+#         name = request.POST.get("name")
+#         email = request.POST.get("email")
+#         message = request.POST.get("message")
+#         file = request.POST.get("file")
+#         # print (f"{name} has sent {message}")
+#         save_contact = Contact(name=name, email=email, message=message,file=file)
+#         save_contact.save()
+#        	messages.success(request,"successfilly sent")
+#         return render(request, "contact.html", {})
+#     else:
+#     	return render(request, "contact.html", {})
+
+def contact(request):
+    form = ContactForm()
     if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
-        file = request.POST.get("file")
-        # print (f"{name} has sent {message}")
-        save_contact = Contact(name=name, email=email, message=message,file=file)
-        save_contact.save()
+        form = ContactForm(request.POST or None) 
+        form.save()    
+        form = ContactForm()
        	messages.success(request,"successfilly sent")
-        return render(request, "contact.html", {})
+        return render(request, "contact.html", {"form": form})
     else:
-    	return render(request, "contact.html", {})
+    	return render(request, "contact.html", {"form": form})
+
+
 def about (request):
     about_text = About.objects.all()
     return render(request, "about.html", {"about": about_text})

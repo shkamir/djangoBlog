@@ -7,21 +7,24 @@
 <!-- name email message file  -->
 <div class="container">
   <div class="row col-sm-12">
+    {% if messages %}
     <span class="text-center text-success">
         {% for m in messages %}
           <center><p>{{ m }}</p></center>
         {% endfor  %}
     </span>
+    {% endif %}
     <form method="POST">
       {% csrf_token %}
-      <br />
-      <input type="text" name="name"  placeholder=" Your name" class="form-control" required >
-      <br>
-      <input type="text" name="email"  placeholder="Your Email" class="form-control" required>
-      <br>
-      <textarea name="message" rows="8" cols="80" class="form-control" placeholder="Your Message Here" required></textarea>
-      <br>
-      <input type="file" name="file" value="file" class="form-control-filte">
+      <!--<br />-->
+      <!--<input type="text" name="name"  placeholder=" Your name" class="form-control" required >-->
+      <!--<br>-->
+      <!--<input type="text" name="email"  placeholder="Your Email" class="form-control" required>-->
+      <!--<br>-->
+      <!--<textarea name="message" rows="8" cols="80" class="form-control" placeholder="Your Message Here" required></textarea>-->
+      <!--<br>-->
+      <!--<input type="file" name="file" value="file" class="form-control-filte">-->
+      {{form.as_p}}
       <br />
       <br>
       <button type="submit" name="button" class="btn btn-success btn-block" >
