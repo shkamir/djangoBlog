@@ -8,11 +8,13 @@
 
   {% if messages %}
   {% for m in messages %}
+  {% for c in client %}
     <div class="container py-5">  
-        <h6 class="text-center text-capitalize">Thanks for Your Feedback</h6>  
+        <h6 class="text-center text-capitalize">Thank You dear {{c.name}} for visiting my website :)</h6>  
         <div class="alert alert-success">  
             <strong class="text-center text-capitalize">{{m}}</strong>
     </div>  
+    {% endfor %}
     {% endfor %}
     {% endif %}
     {% comment %} <span class="text-center text-success">

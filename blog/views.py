@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article, Contact, About
 from django.contrib import messages
 from .forms import ContactForm
@@ -44,10 +44,12 @@ def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST or None) 
         form.save()    
-        form = ContactForm()
+        name=form.cleaned_data.get("name")
        	messages.success(request,"successfilly sent")
-        
-        return render(request, "contact.html", {"form": form})
+        client = Contact.objects.filter(name=name)
+        form = ContactForm()
+        redirect("contact")
+        return render(request, "contact.html", {"form": form, "client":client})
     else:
     	return render(request, "contact.html", {"form": form})
 

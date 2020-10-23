@@ -32,10 +32,6 @@ class Contact(models.Model):
     email = models.EmailField()
     message = models.TextField()
     file = models.FileField(blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.name}---{self.email}"
-
     class Meta:
         verbose_name = "contact"
         verbose_name_plural = "contact form's"
