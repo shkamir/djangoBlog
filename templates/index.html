@@ -16,6 +16,13 @@
 	<body>
 		{% include 'nav.html' %}
 		{% block content %}
+		<div class="container text-center">
+		{% if messages %}
+			{% for message in messages %}
+		<span class="alert alert-info">{{message}}</span>
+			{% endfor %}
+		{% endif %}
+		</div>
 		{% for articles in article %}
 		<ul class="list-group text-center">
 			<div class="container text-center">

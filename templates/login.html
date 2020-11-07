@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block title %} Login Page {% endblock title %}
+
+
+{% block content %}
+<div "text-center">
+{% if messages %}
+	{% for message in messages %}
+		<span class="alert alert-info">{{message}}</span>
+	{% endfor %}
+{% endif %}
+</div>
+<div class="container">
+<form method="POST" action="{% url 'login' %}">
+	{% csrf_token %}
+	{{login_form.as_p}}
+	
+<a href="{% url 'register' %}" class="content-align-center">Don't have an account?</a>
+	<button class="btn btn-info btn-block">
+		Login
+	</button>
+</form>
+</div>
+{% endblock %}

@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article, Contact, About
 from django.contrib import messages
-from .forms import ContactForm
-
+from .forms import ContactForm, RegisterForm, LoginForm
+from django.contrib.auth import authenticate, login, logout
 
 def index(request):
     article = Article.objects.filter(isPublished="publish")
@@ -57,3 +57,42 @@ def contact(request):
 def about (request):
     about_text = About.objects.all()
     return render(request, "about.html", {"about": about_text})
+
+
+def register(request):
+    register_form = RegisterForm()
+    if request.method == "POST":
+        register_form = RegisterForm(request.POST or None)
+        if register_form.is_valid():
+            register_form.save()
+            this_username = register_form.cleaned_data.get("username")
+            this_password = register_form.cleaned_data.get("password1")            
+            user = authenticate(username=this_username, password=this_password)
+            login(request, user)
+            messages.success(request,"Welcome %s" % (this_username))
+            return redirect("index")
+        else:
+            messages.error(request,"Something Went Wrong")
+
+    return render(request, 'register.html', {"register_form": register_form})
+def login_user(request):
+    login_form= LoginForm()
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
+        if user.is_active:
+            login(request, user)
+            messages.success(request,"Welcome %s" % (username))
+            return redirect("index")
+        else:
+            messages.error(request,"Something Went Wrong")
+
+
+    return render(request, 'login.html', {"login_form": login_form})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request,"successfilly logged out")
+    return redirect("index")
